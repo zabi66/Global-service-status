@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Code-Red-Global-Service-Status</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #111;
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-container {
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+        }
+        .map-container {
+            width: 800px;
+            height: 500px;
+            margin: auto auto 20px auto;
+            position: relative;
+            z-index: 2;
+            background: #111;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .shapes-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .shape {
+            position: absolute;
+            opacity: 0.5;
+            animation: float 8s ease-in-out infinite;
+        }
+        .star {
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+        .star-inner {
+            width: 30px;
+            height: 30px;
+            background: #FFFFFF;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            box-shadow: 0 0 20px #FFFFFF, 0 0 30px #FFFFFF, 0 0 40px #FFFFFF;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shapes-container">
+        <div class="shape star" style="top: 15%; left: 10%;"><div class="star-inner"></div></div>
+        <div class="shape star" style="top: 75%; left: 15%;"><div class="star-inner"></div></div>
+        <div class="shape star" style="top: 35%; left: 25%;"><div class="star-inner"></div></div>
+        <div class="shape star" style="top: 85%; left: 35%;"><div class="star-inner"></div></div>
+        <div class="shape star" style="top: 25%; left: 45%;"><div class="star-inner"></div></div>
+        <div class="shape star" style="top: 65%; left: 55%;"><div class="star-inner"></div></div>
+        <div class="shape star" style="top: 45%; left: 65%;"><div class="star-inner"></div></div>
+        <div class="shape star" style="top: 15%; left: 75%;"><div class="star-inner"></div></div>
+        <div class="shape star" style="top: 85%; left: 85%;"><div class="star-inner"></div></div>
+        <div class="shape star" style="top: 35%; left: 90%;"><div class="star-inner"></div></div>
+    </div>
+
+    <div class="nav-container">
+        <div class="nav-right">
+            <div class="item3">
+                <ul class="horizontal-menu">
+                    <li>
+                        <a href="#" class="home-link">
+                            <i class="fa fa-home home-icon"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>Team</li>
+                    <li>About-Us</li>
+                    <li class="has-dropdown">
+                        NGINX
+                        <ul class="dropdown">
+                            <li>Dashboard</li>
+                            <li>Global-Server-Status</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="item4">
+                <a href="#" class="accessibility-link">
+                    <i class="fas fa-universal-access"></i>
+                </a>
+                <ul class="accessibility-menu" id="accessibility-menu">
+                    <li><button id="increase-text">Increase Text</button></li>
+                    <li><button id="decrease-text">Decrease Text</button></li>
+                    <li><button id="grayscale">Grayscale</button></li>
+                    <li><button id="high-contrast">High Contrast</button></li>
+                    <li><button id="negative-contrast">Negative Contrast</button></li>
+                    <li><button id="light-background">Light Background</button></li>
+                    <li><button id="links-underline">Links Underline</button></li>
+                    <li><button id="readable-font">Readable Font</button></li>
+                    <li><button id="reset">Reset</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <div id="847bb66e-8cdd-4ec7-8cbd-7ccc0c94ce80" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+    </div>
+    <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+    <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+    <script type="text/javascript">
+        window.PLOTLYENV=window.PLOTLYENV || {};
+        if (document.getElementById("847bb66e-8cdd-4ec7-8cbd-7ccc0c94ce80")) {
+            Plotly.newPlot(
+                "847bb66e-8cdd-4ec7-8cbd-7ccc0c94ce80",
+                [{"hoverinfo":"text","locationmode":"country names","locations":["Argentina","Austria","Bangladesh","Belgium","Brazil","Bulgaria","Canada","Chile","China","Denmark","Finland","France","Germany","Hong Kong","India","Iran","Iraq","Ireland","Italy","Japan","Jordan","Lithuania","Luxembourg","Malaysia","Moldova","Poland","Romania","Russia","Seychelles","Singapore","Slovenia","South Africa","South Korea","Sweden","Thailand","The Netherlands","T\u00fcrkiye","Ukraine","United Kingdom","United States","Vietnam"],"marker":{"color":"crimson","line":{"color":"black","width":0.5},"opacity":0.7,"size":{"dtype":"f8","bdata":"AAAAAAAA8D8AAAAAAAAYQAAAAAAAAABAAAAAAAAAIkAAAAAAAAAUQAAAAAAAAABAAAAAAAAAHEAAAAAAAAAIQAAAAAAAACxAAAAAAAAA8D8AAAAAAAAYQAAAAAAAgFJAAAAAAACAT0AAAAAAAAAUQAAAAAAAACJAAAAAAAAAKEAAAAAAAAAAQAAAAAAA4IpAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAAhAAAAAAAAA8D8AAAAAAAAIQAAAAAAAAAhAAAAAAAAAGEAAAAAAAAAwQAAAAAAAACxAAAAAAAAAIkAAAAAAAIBZQAAAAAAAAFZAAAAAAAAA8D8AAAAAAAAQQAAAAAAAAAhAAAAAAAAACEAAAAAAAADwPwAAAAAAADlAAAAAAAAACEAAAAAAAAAkQAAAAAAAAFFAAAAAAACAeEAAAAAAAAAqQA=="},"sizemode":"area","sizeref":0.172},"text":["\u003cb\u003eArgentina\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 1.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eAustria\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 4.0\u003cbr\u003e405-errors: 2.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eBangladesh\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 2.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eBelgium\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 9.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eBrazil\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 2.0\u003cbr\u003e405-errors: 3.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eBulgaria\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 1.0\u003cbr\u003e405-errors: 1.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eCanada\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 1.0\u003cbr\u003e405-errors: 6.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eChile\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 3.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eChina\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 13.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 1.0","\u003cb\u003eDenmark\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 1.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eFinland\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 4.0\u003cbr\u003e405-errors: 2.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eFrance\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 57.0\u003cbr\u003e405-errors: 9.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 8.0","\u003cb\u003eGermany\u003c\u002fb\u003e\u003cbr\u003e403-errors: 5.0\u003cbr\u003e404-errors: 29.0\u003cbr\u003e405-errors: 9.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 20.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eHong Kong\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 2.0\u003cbr\u003e405-errors: 3.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eIndia\u003c\u002fb\u003e\u003cbr\u003e403-errors: 3.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 6.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eIran\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 1.0\u003cbr\u003e405-errors: 11.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eIraq\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 2.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eIreland\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 856.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 4.0","\u003cb\u003eItaly\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 1.0\u003cbr\u003e405-errors: 1.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eJapan\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 2.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eJordan\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 3.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eLithuania\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 1.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eLuxembourg\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 3.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eMalaysia\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 3.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eMoldova\u003c\u002fb\u003e\u003cbr\u003e403-errors: 6.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003ePoland\u003c\u002fb\u003e\u003cbr\u003e403-errors: 7.0\u003cbr\u003e404-errors: 8.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 1.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eRomania\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 12.0\u003cbr\u003e405-errors: 2.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eRussia\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 4.0\u003cbr\u003e405-errors: 5.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eSeychelles\u003c\u002fb\u003e\u003cbr\u003e403-errors: 45.0\u003cbr\u003e404-errors: 56.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 1.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eSingapore\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 81.0\u003cbr\u003e405-errors: 7.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eSlovenia\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 1.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eSouth Africa\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 3.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 1.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eSouth Korea\u003c\u002fb\u003e\u003cbr\u003e403-errors: 2.0\u003cbr\u003e404-errors: 0.0\u003cbr\u003e405-errors: 1.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eSweden\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 3.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eThailand\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 1.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eThe Netherlands\u003c\u002fb\u003e\u003cbr\u003e403-errors: 12.0\u003cbr\u003e404-errors: 11.0\u003cbr\u003e405-errors: 0.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 2.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eT\u00fcrkiye\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 1.0\u003cbr\u003e405-errors: 2.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eUkraine\u003c\u002fb\u003e\u003cbr\u003e403-errors: 4.0\u003cbr\u003e404-errors: 5.0\u003cbr\u003e405-errors: 1.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eUnited Kingdom\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 60.0\u003cbr\u003e405-errors: 8.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 0.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eUnited States\u003c\u002fb\u003e\u003cbr\u003e403-errors: 17.0\u003cbr\u003e404-errors: 280.0\u003cbr\u003e405-errors: 85.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 4.0\u003cbr\u003e500-errors: 6.0\u003cbr\u003e503-errors: 0.0","\u003cb\u003eVietnam\u003c\u002fb\u003e\u003cbr\u003e403-errors: 0.0\u003cbr\u003e404-errors: 1.0\u003cbr\u003e405-errors: 9.0\u003cbr\u003e409-errors: 0.0\u003cbr\u003e499-errors: 0.0\u003cbr\u003e500-errors: 3.0\u003cbr\u003e503-errors: 0.0"],"type":"scattergeo"}],
+                {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"Global Error Origins by Country"},"geo":{"projection":{"type":"natural earth"},"scope":"world","showland":true,"landcolor":"lightgray"},"margin":{"l":0,"r":0,"t":50,"b":0}},
+                {"responsive": true}
+            )
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accessibilityLink = document.querySelector('.accessibility-link');
+            const accessibilityMenu = document.getElementById('accessibility-menu');
+            
+            // Toggle menu on click
+            accessibilityLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                accessibilityMenu.classList.toggle('show');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.item4')) {
+                    accessibilityMenu.classList.remove('show');
+                }
+            });
+
+            // Create a container for main content if it doesn't exist
+            const mainContent = document.createElement('div');
+            mainContent.id = 'main-content';
+            
+            // Move all content except the navigation into the main content div
+            const container = document.querySelector('.container');
+            if (container) {
+                container.parentNode.insertBefore(mainContent, container);
+                mainContent.appendChild(container);
+            }
+
+            // Store original styles
+            const originalStyles = {
+                fontSize: window.getComputedStyle(mainContent).fontSize || '16px',
+                filter: document.documentElement.style.filter,
+                backgroundColor: document.documentElement.style.backgroundColor,
+                color: document.documentElement.style.color
+            };
+
+            // Accessibility functions
+            document.getElementById('increase-text').addEventListener('click', function() {
+                const mainContent = document.getElementById('main-content');
+                const currentSize = parseInt(window.getComputedStyle(mainContent).fontSize) || 16;
+                mainContent.style.fontSize = (currentSize + 2) + 'px';
+            });
+            
+            document.getElementById('decrease-text').addEventListener('click', function() {
+                const mainContent = document.getElementById('main-content');
+                const currentSize = parseInt(window.getComputedStyle(mainContent).fontSize) || 16;
+                if (currentSize > 12) {
+                    mainContent.style.fontSize = (currentSize - 2) + 'px';
+                }
+            });
+            
+            document.getElementById('grayscale').addEventListener('click', function() {
+                document.documentElement.style.filter = 'grayscale(100%)';
+            });
+            
+            document.getElementById('high-contrast').addEventListener('click', function() {
+                document.documentElement.style.backgroundColor = '#000000';
+                document.documentElement.style.color = '#ffffff';
+            });
+            
+            document.getElementById('negative-contrast').addEventListener('click', function() {
+                document.documentElement.style.backgroundColor = '#000000';
+                document.documentElement.style.color = '#ffff00';
+            });
+            
+            document.getElementById('light-background').addEventListener('click', function() {
+                document.documentElement.style.backgroundColor = '#ffffff';
+                document.documentElement.style.color = '#000000';
+            });
+            
+            document.getElementById('links-underline').addEventListener('click', function() {
+                const links = document.getElementsByTagName('a');
+                for (let link of links) {
+                    if (link.style.textDecoration === 'underline') {
+                        link.style.textDecoration = 'none';
+                    } else {
+                        link.style.textDecoration = 'underline';
+                    }
+                }
+            });
+            
+            document.getElementById('readable-font').addEventListener('click', function() {
+                document.body.classList.toggle('dyslexia-font');
+            });
+            
+            document.getElementById('reset').addEventListener('click', function() {
+                // Reset font size
+                const mainContent = document.getElementById('main-content');
+                mainContent.style.fontSize = originalStyles.fontSize;
+                
+                // Reset filters
+                document.documentElement.style.filter = originalStyles.filter;
+                
+                // Reset colors
+                document.documentElement.style.backgroundColor = '';
+                document.documentElement.style.color = '';
+                
+                // Reset link underlines
+                const links = document.getElementsByTagName('a');
+                for (let link of links) {
+                    link.style.textDecoration = '';
+                }
+                
+                // Reset font
+                document.body.classList.remove('dyslexia-font');
+                
+                // Close the accessibility menu
+                accessibilityMenu.classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>
